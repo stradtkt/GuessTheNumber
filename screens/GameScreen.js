@@ -1,10 +1,11 @@
 import React, {useEffect, useState} from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import { View, StyleSheet, Alert, Text } from 'react-native';
 import Title from '../components/ui/Title';
 import NumberContainer from '../components/game/NumberContainer';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
+
 
 const generateRandomBetween = (min, max, exclude) => {
     const randomNumber = Math.floor(Math.random() * (max - min)) + min;
@@ -47,10 +48,18 @@ const GameScreen = ({userNumber, onGameOver}) => {
         <Title>Opponent's Guess</Title>
         <NumberContainer>{currentGuess}</NumberContainer>
         <Card>
-            <InstructionText>Higher or lower?</InstructionText>
-            <View>
-                <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>-</PrimaryButton>
-                <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>+</PrimaryButton>
+            <InstructionText style={styles.instructionText}>Higher or lower?</InstructionText>
+            <View style={styles.buttonsContainer}>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                        <Text style={styles.buttonText}>-</Text>
+                    </PrimaryButton>
+                </View>
+                <View style={styles.buttonContainer}>
+                    <PrimaryButton onPress={nextGuessHandler.bind(this, 'greater')}>
+                        <Text style={styles.buttonText}>+</Text>
+                    </PrimaryButton>
+                </View>
             </View>
         </Card>
         <View>
@@ -64,6 +73,20 @@ const styles = StyleSheet.create({
     screen: {
         flex: 1,
         padding: 12,
+    },
+    buttonsContainer: {
+        flexDirection: 'row',
+    },
+    buttonContainer: {
+        flex: 1,
+    },
+    instructionText: {
+        marginBottom: 10,
+    },
+    buttonText: {
+        fontSize: 24,
+        color: 'white',
+        fontWeight: 'bold',
     },
 });
 
