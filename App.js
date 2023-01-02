@@ -14,7 +14,7 @@ const App = () => {
   };
   let screen = <StartGameScreen onPickedNumber={pickedNumberHandler}/>;
   if(userNumber) {
-    screen = <GameScreen/>
+    screen = <GameScreen userNumber={userNumber}/>;
   }
   return (
     <LinearGradient style={styles.rootScreen} colors={[Colors.primary500, Colors.secondary500, Colors.primary500]}>
